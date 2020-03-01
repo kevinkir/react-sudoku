@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './Cell.css';
+
 export const Cell = ({ onChange, value }) => (
   <div className='cell-container'>
     <input
