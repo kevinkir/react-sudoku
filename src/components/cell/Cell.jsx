@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export const Cell = ({ onChange, value }) => (
-  <div className="cell-container">
+  <div className='cell-container'>
     <input
-      type="number"
-      className="cell-input"
+      type='number'
+      className='cell-input'
       onChange={(event) => {
         onChange(event.target.value);
       }}
@@ -15,5 +15,6 @@ export const Cell = ({ onChange, value }) => (
 );
 
 Cell.propTypes = {
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.number.isRequired,
 };
