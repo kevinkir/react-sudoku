@@ -4,19 +4,19 @@ import PropTypes from 'prop-types';
 import './Cell.css';
 
 export const Cell = ({ onChange, value }) => (
-  <div className='cell-container'>
-    <input
-      type='number'
-      className='cell-input'
-      onChange={(event) => {
-        onChange(event.target.value);
-      }}
-      value={value}
-    />
-  </div>
+    <div className='cell-container'>
+        <input
+            type='number'
+            className='cell-input'
+            onChange={(event) => {
+                onChange(event.target.value);
+            }}
+            value={value}
+        />
+    </div>
 );
 
 Cell.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  value: PropTypes.number.isRequired,
+    onChange: PropTypes.func.isRequired,
+    value: PropTypes.number.isRequired,
 };
