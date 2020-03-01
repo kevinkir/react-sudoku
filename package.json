@@ -1,0 +1,13 @@
+{
+  "name": "sudoku-react",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Kevin Kirchhoff <kevin.kirchhoff@logmein.com>",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5"
+  }
+}
