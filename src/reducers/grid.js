@@ -1,10 +1,9 @@
 import { actionNames } from '../actions/action-names';
 import { createGrid } from '../helpers/grid';
+import { GRID_WIDTH } from '../constants';
 
-const GRID_WIDTH = 9;
-
-function updateCell(grid, cell, value) {
-  return grid.map((row, rowIndex) => {
+function updateCell(rows, cell, value) {
+  return rows.map((row, rowIndex) => {
     const updatedRow = [...row];
     if (rowIndex === cell.row) {
       updatedRow[cell.col] = value;
@@ -13,10 +12,27 @@ function updateCell(grid, cell, value) {
   });
 }
 
-export function gridReducer(state = createGrid(GRID_WIDTH), action) {
+function setStartingValues(startingValues) {
+  const values = createGrid(GRID_WIDTH);
+  const editable = createGrid(GRID_WIDTH, true);
+
+  startingValues.forEach(({ row, col, value }) => {
+    values[row][col] = value;
+    editable[row][col] = false;
+  });
+
+  return { editable, values };
+}
+
+export function grid(state = setStartingValues([]), action) {
   switch (action.type) {
+    case actionNames.SET_STARTING_VALUES:
+      return setStartingValues(action.values);
     case actionNames.UPDATE_CELL:
-      return updateCell(state, action.cell, action.value);
+      return {
+        editable: state.editable,
+        values: updateCell(state.values, action.cell, action.value),
+      };
     default:
       return state;
   }
