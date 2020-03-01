@@ -1,7 +1,7 @@
 import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import { rootReducer } from './reducers'
+import { rootReducer } from './reducers';
 
 export function configureStore(preloadedState) {
   const middlewares = [];
@@ -15,5 +15,5 @@ export function configureStore(preloadedState) {
     module.hot.accept('./reducers', () => store.replaceReducer(rootReducer));
   }
 
-  return store
+  return store;
 }
