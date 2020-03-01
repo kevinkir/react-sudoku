@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "Kevin Kirchhoff <kevin.kirchhoff@logmein.com>",
-  "license": "MIT",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "webpack-dev-server --mode development"
+  },
   "dependencies": {
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
