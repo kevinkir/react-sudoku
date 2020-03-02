@@ -1,4 +1,6 @@
 export const actionNames = {
-    SET_STARTING_VALUES: 'SET_STARTING_VALUES',
     UPDATE_CELL: 'UPDATE_CELL',
+
+    CHECK: 'CHECK',
+    NEW_GAME: 'NEW_GAME',
 };

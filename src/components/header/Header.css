@@ -1,0 +1,17 @@
+header {
+    position: relative;
+    display: flex;
+    flex-direction: horizontal;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
+}
+
+.title {
+    height: var(--title-height);
+    box-sizing: border-box;
+    margin: auto;
+    line-height: var(--title-height);
+    width: 100%;
+    text-align: center;
+}

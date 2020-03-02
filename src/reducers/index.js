@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import { disabledCells } from './grid';
-import { grid } from './grid';
+import { editableReducer } from './editable';
+import { gridReducer } from './grid';
 
 export const rootReducer = combineReducers({
-    disabledCells,
-    grid,
+    editable: editableReducer,
+    grid: gridReducer,
 });

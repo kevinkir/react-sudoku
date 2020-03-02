@@ -13,26 +13,19 @@ function updateCell(rows, cell, value) {
 }
 
 function setStartingValues(startingValues) {
-    const values = createGrid(GRID_WIDTH);
-    const editable = createGrid(GRID_WIDTH, true);
-
+    const grid = createGrid(GRID_WIDTH);
     startingValues.forEach(({ row, col, value }) => {
-        values[row][col] = value;
-        editable[row][col] = false;
+        grid[row][col] = value;
     });
-
-    return { editable, values };
+    return grid;
 }
 
-export function grid(state = setStartingValues([]), action) {
+export function gridReducer(state = setStartingValues([]), action) {
     switch (action.type) {
-        case actionNames.SET_STARTING_VALUES:
-            return setStartingValues(action.values);
+        case actionNames.NEW_GAME:
+            return setStartingValues(action.startingValues);
         case actionNames.UPDATE_CELL:
-            return {
-                editable: state.editable,
-                values: updateCell(state.values, action.cell, action.value),
-            };
+            return updateCell(state, action.cell, action.value);
         default:
             return state;
     }

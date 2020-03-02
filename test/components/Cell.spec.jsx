@@ -9,6 +9,7 @@ test('Cell input value reflects the value prop', () => {
     <Cell
       onChange={jest.fn()}
       value={value}
+      disabled={false}
     />
   );
 
@@ -23,6 +24,7 @@ test('Cell onChange prop is called with the new value', () => {
     <Cell
       onChange={onChange}
       value={5}
+      disabled={false}
     />
   );
 

@@ -1,41 +1,37 @@
-import { grid } from '../../src/reducers/grid';
+import { gridReducer } from '../../src/reducers/grid';
 import { actionNames } from '../../src/actions/action-names';
 
 test('Grid values should be initialized to an empty 9-by-9 array', () => {
-  const state = grid(undefined, {});
+  const grid = gridReducer(undefined, {});
   
-  expect(state.values.length).toEqual(9);
-  expect(state.values[0].length).toEqual(9);
-  expect(state.values[0][0]).toBeUndefined();
+  expect(grid.length).toEqual(9);
+  expect(grid[0].length).toEqual(9);
+  expect(grid[0][0]).toBeUndefined();
 });
 
 
-test('Grid values should update when the UPDATE_CELL action is dispatched', () => {
-  const initialState = grid(undefined, {});
+test('UPDATE_CELL should set a single grid value', () => {
+  const initialState = gridReducer(undefined, {});
 
-  const state = grid(initialState, {
+  const grid = gridReducer(initialState, {
     type: actionNames.UPDATE_CELL,
     cell: { row: 3, col: 2 },
     value: 5
   });
 
-  expect(state.values[3][2]).toEqual(5);
+  expect(grid[3][2]).toEqual(5);
 });
 
-test('Editable should be initialized to a 9-by-9 array with fill value true', () => {
-  const state = grid(undefined, {});
-  
-  expect(state.editable.length).toEqual(9);
-  expect(state.editable[0].length).toEqual(9);
-  expect(state.editable[0][0]).toEqual(true);
-});
+test('NEW_GAME should set grid values', () => {
+  const initialState = gridReducer(undefined, {
+    type: actionNames.UPDATE_CELL,
+    cell: { row: 0, col: 0 },
+    value: 5
+  });
 
-test('It should update values and editability when the SET_STARTING_VALUES action is dispatched', () => {
-  const initialState = grid(undefined, {});
-
-  const state = grid(initialState, {
-    type: actionNames.SET_STARTING_VALUES,
-    values: [
+  const grid = gridReducer(initialState, {
+    type: actionNames.NEW_GAME,
+    startingValues: [
       {
         row: 3,
         col: 2,
@@ -49,11 +45,7 @@ test('It should update values and editability when the SET_STARTING_VALUES actio
     ],
   });
 
-  expect(state.values[0][0]).toBeUndefined();
-  expect(state.values[3][2]).toEqual(5);
-  expect(state.values[1][7]).toEqual(6);
-
-  expect(state.editable[0][0]).toEqual(true);
-  expect(state.editable[3][2]).toEqual(false);
-  expect(state.editable[1][7]).toEqual(false);
+  expect(grid[0][0]).toBeUndefined();
+  expect(grid[3][2]).toEqual(5);
+  expect(grid[1][7]).toEqual(6);
 });

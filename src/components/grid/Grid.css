@@ -1,0 +1,24 @@
+.grid {
+    width: 100%;
+    height: calc(100% - var(--title-height));
+    border-collapse: collapse;
+    border-width: 3px;
+    border-style: solid;
+    border-color: black;
+}
+
+.grid-cell {
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+}
+
+.grid-cell:nth-child(3), .grid-cell:nth-child(6) {
+    border-right-width: 3px;
+}
+
+.grid-row:nth-child(3), .grid-row:nth-child(6) {
+    border-width: 0 0 3px 0;
+    border-style: solid;
+    border-color: black;
+}

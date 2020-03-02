@@ -18,7 +18,10 @@ module.exports = {
       }
     ]
   },
-  resolve: { extensions: ['*', '.js', '.jsx'] },
+  resolve: {
+    alias: { 'react-dom': '@hot-loader/react-dom' },
+    extensions: ['*', '.js', '.jsx']
+  },
   output: {
     path: path.resolve(__dirname, 'dist/'),
     publicPath: '/dist/',
@@ -30,5 +33,6 @@ module.exports = {
     publicPath: 'http://localhost:3000/dist/',
     hotOnly: true
   },
+  devtool : 'inline-source-maps',
   plugins: [new webpack.HotModuleReplacementPlugin()]
 };

@@ -7,10 +7,3 @@ export function updateCell(row, col, value) {
         value,
     };
 }
-
-export function setStartingValues(values) {
-    return {
-        type: actionNames.SET_STARTING_VALUES,
-        values,
-    };
-}
