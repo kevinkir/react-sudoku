@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import './Controls.css';
 
 export const Controls = ({ validate, newGame }) => {
     const [level, setLevel] = useState(1);
+
+    useEffect(() => {
+        newGame(level);
+    }, [level]);
+
     return (
         <span className='controls-container'>
             <div>
