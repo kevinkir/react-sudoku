@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './Controls.css';
 
-export const Controls = ({ check, newGame }) => {
+export const Controls = ({ validate, newGame }) => {
     const [level, setLevel] = useState(1);
     return (
         <span className='controls-container'>
@@ -22,7 +22,7 @@ export const Controls = ({ check, newGame }) => {
                 <button className='new-game-button' onClick={() => newGame(level)}>
                     New game
                 </button>
-                <button className='check-button' onClick={check}>
+                <button className='check-button' onClick={validate}>
                     Check
                 </button>
             </div>
@@ -31,6 +31,6 @@ export const Controls = ({ check, newGame }) => {
 };
 
 Controls.propTypes = {
-    check: PropTypes.func.isRequired,
+    validate: PropTypes.func.isRequired,
     newGame: PropTypes.func.isRequired,
 };

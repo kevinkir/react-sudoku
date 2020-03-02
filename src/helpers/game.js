@@ -1,7 +1,7 @@
-import { shuffledRange } from './array';
-import { convert1DIndexTo2DIndex } from './grid';
+import { range, shuffledRange } from './array';
+import { convert1DIndexTo2DIndex, computeBoxWidth } from './grid';
 import { ManagedGrid } from './managed-grid';
-import { GRID_WIDTH } from '../constants';
+import { GRID_WIDTH, STARTING_SQUARES_BASIS } from '../constants';
 
 function fillManagedGrid(managedGrid) {
     if (managedGrid.isFull()) {
@@ -34,7 +34,7 @@ function createSolution(gridWidth) {
 
 function numStartingSquaresForLevel(gridWidth, level) {
     const totalSquares = gridWidth ** 2;
-    const fractionOfSquares = 0.6 - level / 10;
+    const fractionOfSquares = STARTING_SQUARES_BASIS - level / 10;
     return Math.floor(totalSquares * fractionOfSquares);
 }
 
@@ -52,4 +52,42 @@ export function getStartingValues(level) {
         const value = solution[row][col];
         return { row, col, value };
     });
+}
+
+export function isValidSolution(grid) {
+    function isCollectionValid(collection) {
+        const expectedValues = new Set(range(1, grid.length + 1));
+        for (let i = 0; i < collection.length; i++) {
+            if (!expectedValues.delete(collection[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function getBox(i) {
+        const box = [];
+        const boxSize = computeBoxWidth(grid.length);
+        const rowOffset = Math.floor(i / boxSize) * boxSize;
+        const colOffset = Math.floor(i % boxSize) * boxSize;
+        for (let row = rowOffset; row < boxSize + rowOffset; row++) {
+            for (let col = colOffset; col < boxSize + colOffset; col++) {
+                box.push(grid[row][col]);
+            }
+        }
+        return box;
+    }
+
+    for (let i = 0; i < grid.length; i++) {
+        if (!isCollectionValid(grid[i])) {
+            return false;
+        }
+        if (!isCollectionValid(grid.map((row) => row[i]))) {
+            return false;
+        }
+        if (!isCollectionValid(getBox(i))) {
+            return false;
+        }
+    }
+    return true;
 }

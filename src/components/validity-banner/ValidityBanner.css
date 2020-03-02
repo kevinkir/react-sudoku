@@ -1,0 +1,31 @@
+.validity-banner {
+    position: fixed;
+    color: white;
+    top: 0;
+    left: 0; 
+    right: 0;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+}
+
+.valid {
+    background-color: #519251;
+}
+
+.invalid {
+    background-color: #d63d3d;
+}
+
+.hidden {
+    display: none;
+}
+
+.close-button {
+    background-color: Transparent;
+    color: white;
+    float: right;
+    border: none;
+    height: 25px;
+    box-sizing: border-box;
+}

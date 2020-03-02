@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 
 import { Controls } from './Controls';
-import { check, newGame } from '../../actions/game-actions';
+import { newGame } from '../../actions/game-actions';
+import { showValidityBanner } from '../../actions/validity-banner-actions';
 import { getStartingValues } from '../../helpers/game';
 
 function mapStateToProps() {
@@ -10,8 +11,8 @@ function mapStateToProps() {
 
 function mapDispatchToProps(dispatch) {
     return {
-        check() {
-            dispatch(check());
+        validate() {
+            dispatch(showValidityBanner());
         },
         newGame(level) {
             const startingValues = getStartingValues(level);
